@@ -4,16 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda de Ropa Online</title>
-    <link rel="stylesheet" href="/style.css" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <h1 class="titulo-principal">Tienda de Ropa Online</h1>
-    <p class="texto-postitulo">Bienvenido a nuestra tienda de ropa online con articulos exclusivos!</p>
-    <h2 class="titulo-secundario">Catalogo de Productos</h2>
-    <section id="card-contenedor" class="card-contenedor"></section>
-    <section id="factura-contenedor" class="factura-contenedor"></section>
-    <button id="check-out">Check out</button>
-    <script src="app.js"></script>
+    <form class="formularios">
+      <fieldset class="login">
+        <legend class="login__legend">Iniciar Sesion</legend>
+        <input type="text" name="user" id="user" placeholder="Usuario" class="login__user" />
+        <input type="password" name="password" id="password" placeholder="Contrasena" class="login__password" />
+        <button type="submit" name="ingresar" class="login__btn" id="loginBtn">Ingresar</button>
+      </fieldset>
+    </form>
+    <script src="/js/login.js"></script>
   </body>
 </html>

@@ -24,11 +24,11 @@ window.localStorage.removeItem("carritoStorage")
 window.localStorage.removeItem("totalCompraStorage")
 
 
-// Creacion de objetos y envio de objetos a el arrego de productos. 
+// Creacion de objetos y envio de objetos a el arreglo de productos. 
 
-const jeanSlimfit = new Jean (1,"jeans","Jean Slimfit","Jean elastico slimfit color azul",100,1,"media/slimfit.webp");
-const jeanRegularfit = new Jean (2,"jeans","Jean Regularfit","Jean resistente regularfit negro",120,1,"media/regularfit.webp");
-const jeanWidefit = new Jean (3,"jeans","Jean Widefit","Jean comodo widefit color azul",150,1,"media/widefit.webp");
+const jeanSlimfit = new Jean (1,"jeans","Jean Slimfit","Jean elastico slimfit color azul",100,1,"/assets/slimfit.webp");
+const jeanRegularfit = new Jean (2,"jeans","Jean Regularfit","Jean resistente regularfit negro",120,1,"/assets/regularfit.webp");
+const jeanWidefit = new Jean (3,"jeans","Jean Widefit","Jean comodo widefit color azul",150,1,"/assets/widefit.webp");
 
 productos.push(jeanSlimfit, jeanRegularfit, jeanWidefit)
 
@@ -36,6 +36,7 @@ productos.push(jeanSlimfit, jeanRegularfit, jeanWidefit)
 
 const cardConntenedor = document.getElementById("card-contenedor")
 const facturaConntenedor = document.getElementById("factura-contenedor")
+const cart = document.getElementById("cart")
 
 // se crean un algoritmo para mostrar los productos y un event listener con click sobre el boton agregar. 
 
@@ -43,11 +44,11 @@ productos.forEach((producto) => {
     const mostrarProductos = document.createElement("div")
     mostrarProductos.classList.add("card")
     mostrarProductos.innerHTML = `
-        <h3 class="card-titulo">${producto.titulo}</h3>
-        <img class="card-img" src=${producto.img} alt="" />
-        <p class="card-descripcion">${producto.descripcion}</p>
-        <p class="card-precio">$ ${producto.precio}</p>
-        <button id="${producto.id}" class="btn-card">Agregar</button>
+    <img class="card__img" src="${producto.img}" alt="" />
+    <h3 class="card__titulo">${producto.titulo}</h3>
+    <p class="card__descripcion">${producto.descripcion}</p>
+    <p class="card__precio">$ ${producto.precio}</p>
+    <button id="${producto.id}" class="card__btn">Agregar</button>
     `
     cardConntenedor.appendChild(mostrarProductos)
 
@@ -58,18 +59,15 @@ productos.forEach((producto) => {
     })
 })
 
+
+// se crea una funcion para mostrat el contador de productos en el carrito. 
+
 const actualizarCarrito = () => {
-    facturaConntenedor.innerHTML = ""
-    const articulosCarrito = document.createElement("h2")
-    articulosCarrito.classList.add("titulos-seccion")
-    articulosCarrito.innerHTML = `Articulos En carrito`
-    facturaConntenedor.appendChild(articulosCarrito)
-        const div = document.createElement("div")
-        div.classList.add("factura")
-        div.innerHTML = `
-            <p id="contador" class="txt-center"> Cantidad: ${itemsCarrito}</p>
-            `
-        facturaConntenedor.appendChild(div)
+    cart.innerHTML = ""
+        const span = document.createElement("span")
+        span.classList.add("counter")
+        span.innerHTML = `${itemsCarrito}`
+        cart.appendChild(span)
     }
 
 // se crea una funcion para agregar los productos al carrito y evitar duplicados. 
@@ -82,6 +80,7 @@ const agregarCarrito = (productoId) => {
         itemsCarrito= carrito.reduce((acumulator, actual) => {
             return acumulator + actual.cart;
         }, 0)
+        // se envian los productos del carrito y el valor total de compra al storage para poder utilizarlos en la pagina del checkout
         localStorage.setItem('carritoStorage', JSON.stringify(carrito))
         localStorage.setItem('totalCompraStorage', JSON.stringify(totalCompra))
         actualizarCarrito()
@@ -91,6 +90,7 @@ const agregarCarrito = (productoId) => {
         itemsCarrito= carrito.reduce((acumulator, actual) => {
             return acumulator + actual.cart;
         }, 0)
+        // se envian los productos del carrito y el valor total de compra al storage para poder utilizarlos en la pagina del checkout
         localStorage.setItem('carritoStorage', JSON.stringify(carrito))
         localStorage.setItem('totalCompraStorage', JSON.stringify(totalCompra))
         actualizarCarrito( )
@@ -99,10 +99,12 @@ const agregarCarrito = (productoId) => {
     console.log(itemsCarrito)
 }
 
+// se agrega un event listener para cuando den click en el carrito este los lleve a la pagina de checkout. 
+
 const checkOut = document.getElementById("check-out")
 
 checkOut.addEventListener("click", () => {
     window.location.assign("checkout.html")
-    alert("Gracias")
+    alert("💖Gracias por tu compra💖")
 })
 

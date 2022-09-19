@@ -1,15 +1,14 @@
 
+// se selecciona elementos del dom para visualizacion, y se traen del storage el total compra y los productos del carrito.
+
 const facturaConntenedor = document.getElementById("factura-contenedor")
 
 let carrito = JSON.parse(window.localStorage.getItem("carritoStorage"))
 let totalCompra = JSON.parse(window.localStorage.getItem("totalCompraStorage"))
 
-console.log(carrito)
-console.log(totalCompra)
+// se crea una funcion para mostrar los productos seleccionados totales 
 
-// se crea una funcion para mostrar los productos seleccionados con las cantidades y evitar que se repitan cada vez que se agrega un nuevo producto. 
-
-const actualizar = () => {
+const reciboCompra = () => {
     facturaConntenedor.innerHTML = ""
     const articulosCarrito = document.createElement("h2")
     articulosCarrito.classList.add("titulos-seccion")
@@ -19,9 +18,10 @@ const actualizar = () => {
         const div = document.createElement("div")
         div.classList.add("factura")
         div.innerHTML = `
-            <h3 class="factura-titulo padd-min">${producto.titulo}</h3>
-            <p id="contador" class="txt-center"> Cantidad: ${producto.cart}</p>
-            <p class="txt-center">Precio: $ ${producto.precio}</p>
+        <img src="${producto.img}" alt="producto" class="factura__img">
+        <h3 class="factura-titulo">${producto.titulo}</h3>
+        <p id="contador" class="factura__cantidad">Cantidad: ${producto.cart}</p>
+        <p class="factura__precio">Valor Unidad: $ ${producto.precio}</p>
             `
         facturaConntenedor.appendChild(div)
     })
@@ -45,4 +45,4 @@ const actualizar = () => {
     facturaConntenedor.appendChild(divtotal)
 }
 
-actualizar();
+reciboCompra();
