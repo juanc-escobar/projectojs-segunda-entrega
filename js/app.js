@@ -44,7 +44,7 @@ productos.forEach((producto) => {
     const mostrarProductos = document.createElement("div")
     mostrarProductos.classList.add("card")
     mostrarProductos.innerHTML = `
-    <img class="card__img" src=${producto.img} alt="" />
+    <img class="card__img" src="${producto.img}" alt="" />
     <h3 class="card__titulo">${producto.titulo}</h3>
     <p class="card__descripcion">${producto.descripcion}</p>
     <p class="card__precio">$ ${producto.precio}</p>
