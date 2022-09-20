@@ -18,7 +18,7 @@ const reciboCompra = () => {
         const div = document.createElement("div")
         div.classList.add("factura")
         div.innerHTML = `
-        <img src="${producto.img}" alt="producto" class="factura__img">
+        <img src=${producto.img} alt="producto" class="factura__img">
         <h3 class="factura-titulo">${producto.titulo}</h3>
         <p id="contador" class="factura__cantidad">Cantidad: ${producto.cart}</p>
         <p class="factura__precio">Valor Unidad: $ ${producto.precio}</p>
